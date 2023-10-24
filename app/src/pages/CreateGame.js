@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import Circle from "../components/svg/Circle";
 import Cross from "../components/svg/Cross";
 
-const CreateGameScreen = () => {
+const CreateGameScreen = ({ navigation }) => {
   const [board, setBoard] = useState(Array(9).fill(null));
   const [xIsNext, setXIsNext] = useState(true);
   const [winner, setWinner] = useState(null);
