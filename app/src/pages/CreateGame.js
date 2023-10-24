@@ -1,25 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Button from '../components/Button'
+// import { View, Text, StyleSheet } from 'react-native';
+// import Button from '../components/Button'
 
 export default function CreateGameScreen({ navigation }) {
-  // return (
-  //   <View style={styles.container}>
-  //     <Button
-  //       text="Retour"
-  //       onPress={() => navigation.navigate('Home')}
-  //     />
-  //     <Text>Créer une nouvelle partie ici</Text>
-  //   </View>
-  // );
+//   // return (
+//   //   <View style={styles.container}>
+//   //     <Button
+//   //       text="Retour"
+//   //       onPress={() => navigation.navigate('Home')}
+//   //     />
+//   //     <Text>Créer une nouvelle partie ici</Text>
+//   //   </View>
+//   // );
 
-// import React, { useEffect } from 'react';
-// import { View, Text, Button } from 'react-native';
-// import io from 'socket.io-client';
+// // import React, { useEffect } from 'react';
+// // import { View, Text, Button } from 'react-native';
+// // import io from 'socket.io-client';
 
-// const CreateGameScreen = ({ route }) => {
-//     const { roomCode } = route.params;
-//     const socket = io('http://localhost:5000');
+// // const CreateGameScreen = ({ route }) => {
+// //     const { roomCode } = route.params;
+// //     const socket = io('http://localhost:5000');
 
 
     useEffect(() => {
@@ -44,5 +44,3 @@ export default function CreateGameScreen({ navigation }) {
         </View>
     );
 };
-
-export default CreateGameScreen;

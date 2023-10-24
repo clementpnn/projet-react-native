@@ -15,10 +15,10 @@ async def handler(websocket, path):
         if action == "create":
             room_code = randint(1000, 9999)
             rooms[room_code] = {'host': websocket, 'guest': None}
-            await websocket.send(json.dumps({"action": "created", "room_code": room_code}))
+            await websocket.send(json.dumps({"action": "created", "room_code": str(room_code)}))
             
         elif action == "join":
-            room_code = data.get("room_code")
+            room_code = int(data.get("room_code"))
             room = rooms.get(room_code)
             
             if room and not room['guest']:
