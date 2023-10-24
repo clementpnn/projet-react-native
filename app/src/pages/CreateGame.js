@@ -11,15 +11,15 @@ const CreateGameScreen = () => {
 
   //SVG IMAGES
   const circleSvg = (
-    <Circle height={"50px"} width={"50px"} color={xIsNext ? "grey" : "red"} />
+    <Circle height={"50px"} width={"50px"} color={xIsNext ? "#757575" : "#E85454"} />
   );
   const crossSvg = (
-    <Cross height={"50px"} width={"50px"} color={xIsNext ? "blue" : "grey"} />
+    <Cross height={"50px"} width={"50px"} color={xIsNext ? "#6666FF" : "#757575"} />
   );
   const constCircleSvg = (
-    <Circle height={"50px"} width={"50px"} color={"red"} />
+    <Circle height={"50px"} width={"50px"} color={"#E85454"} />
   );
-  const constCrossSvg = <Cross height={"50px"} width={"50px"} color={"blue"} />;
+  const constCrossSvg = <Cross height={"50px"} width={"50px"} color={"#6666FF"} />;
 
   const handleSquareClick = (index) => {
     if (winner || board[index]) {
@@ -88,7 +88,7 @@ const CreateGameScreen = () => {
       <Text
         style={[
           styles.status,
-          { color: winner == "X" ? "blue" : winner == "O" ? "red" : "grey" },
+          { color: winner == "X" ? "#6666FF" : winner == "O" ? "#E85454" : "#757575" },
         ]}
       >
         {status}
@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   status: {
+    width: "100%",
     fontSize: 60,
     marginBottom: 60,
     marginTop: 40,
