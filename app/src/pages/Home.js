@@ -1,9 +1,9 @@
 
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
-import Button from '../components/Button'
-import Input from '../components/Input'
-import Logo from '../components/svg/Logo'
+import Button from '../components/Button';
+import Input from '../components/Input';
+import Logo from '../components/svg/Logo';
 import { useWebSocket } from '../context/WebSocketContext';
 
 export default function HomeScreen({ navigation }) {
