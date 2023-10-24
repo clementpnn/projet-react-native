@@ -17,7 +17,7 @@ export default function HomeScreen({ navigation }) {
         const message = JSON.parse(e.data);
         
         if (message.action === 'start_game') {
-          navigation.navigate('Game');
+          navigation.navigate('Game');x
         } else if (message.action === 'created') {
           setRoomCode(message.room_code);
           setIsHost(true);
@@ -30,6 +30,7 @@ export default function HomeScreen({ navigation }) {
     if (websocket) {
       websocket.send(JSON.stringify({ action: 'create' }));
       console.log('Create game message sent');
+
     }
   };
 
