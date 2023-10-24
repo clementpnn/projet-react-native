@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, TextInput, Button, Text } from 'react-native';
+
+import React from 'react';
+import { View, StyleSheet, Image } from 'react-native';
+import Button from '../components/Button';
+import Input from '../components/Input';
+import Logo from '../components/svg/Logo';
 import { useWebSocket } from '../context/WebSocketContext';
 
 export default function HomeScreen({ navigation }) {
@@ -39,46 +43,48 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Button title="Créer une partie" onPress={createGame} />
-      {isHost && (
-        <View style={styles.roomCodeContainer}>
-          <Text>Code de la salle :</Text>
-          <Text style={styles.roomCode}>{roomCode}</Text>
-        </View>
-      )}
-      {!isHost && (
-        <View style={styles.joinContainer}>
-          <TextInput 
-            style={styles.input} 
-            placeholder="Entrez le code de la salle" 
-            onChangeText={text => setRoomCode(text)} 
-            value={roomCode} 
+      <View style={styles.logoContainer}>
+        <Logo/>
+      </View>
+      <View style={styles.subContainer}>
+        <Button
+          text="Créer une partie"
+          onPress={{createGame}}
+        />
+        <View style={styles.joinParty}>
+          <Input
+            placeholder={"Entrez le code secret"}
           />
-          <Button title="Rejoindre la partie" onPress={joinGame} />
+          <Button
+            text="Rejoindre la partie"
+            onPress={joinGame}
+          />
         </View>
-      )}
+      </View>
+
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    paddingTop: 60,
+    paddingHorizontal: 20,
+    display: 'flex',
     justifyContent: 'center',
-    paddingHorizontal: 16,
   },
-  roomCodeContainer: {
+  subContainer: {
+    display: 'inline-flex',
+    justifyContent: 'flex-start',
+    gap: 40,
+    marginTop: 140,
+  },
+  joinParty: {
+    display: 'flex',
+    gap: 20,
+  },
+  logoContainer: {
+    display: 'flex',
     alignItems: 'center',
-  },
-  roomCode: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  joinContainer: {
-    marginTop: 20,
-  },
-  input: {
-    borderBottomWidth: 1,
-    marginBottom: 20,
-  },
+  }
 });

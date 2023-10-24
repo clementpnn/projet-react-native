@@ -1,43 +1,13 @@
-import { StyleSheet, View } from "react-native"
-import Circle from "./Circle"
-import Cross from "./Cross"
-
-const Logo = () => {
-  return (
-    <View style={styles.logo}>
-    <View style={styles.subContainer}>
-      <View style={styles.svgContainer}>
-        <Cross width={"60px"} height={"60px"} color={"#6666FF"}/>
-      </View>
-      <View style={styles.svgContainer}>
-        <Circle width={"60px"} height={"60px"} color={"#E85454"}/>
-      </View>
-    </View>
-    <View style={styles.subContainer}>
-      <View style={styles.svgContainer}>
-        <Circle width={"60px"} height={"60px"} color={"#E85454"}/>
-      </View>
-      <View style={styles.svgContainer}>
-        <Cross width={"60px"} height={"60px"} color={"#6666FF"}/>
-      </View>
-    </View>
-    </View>
-  )
+export default function Logo (props) {
+    return (
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M67 67L33 33" stroke="#6666FF" stroke-width="6" stroke-linecap="round"/>
+        <path d="M33 67L67 33" stroke="#6666FF" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="150" cy="50" r="17" stroke="#E85454" stroke-width="6"/>
+        <circle cx="50" cy="150" r="17" stroke="#E85454" stroke-width="6"/>
+        <path d="M167 167L133 133" stroke="#6666FF" stroke-width="6" stroke-linecap="round"/>
+        <path d="M133 167L167 133" stroke="#6666FF" stroke-width="6" stroke-linecap="round"/>
+        </svg>
+        
+    )
 }
-
-const styles = StyleSheet.create({
-  logo: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  subContainer: {
-    display: "flex",
-    flexDirection: "row",
-  },
-  svgContainer: {
-    width: 100,
-    height: 100
-  }
-})
-
-export default Logo
