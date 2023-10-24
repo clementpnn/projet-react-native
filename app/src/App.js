@@ -11,9 +11,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="CreateGame" component={CreateGameScreen} />
-        <Stack.Screen name="JoinGame" component={JoinGameScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="CreateGame" component={CreateGameScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="JoinGame" component={JoinGameScreen}  options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

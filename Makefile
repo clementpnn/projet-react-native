@@ -3,5 +3,5 @@ i:
 	cd app/src && npm install
 
 dev:
-	cd server && python3 main.py &
+	cd server && python main.py &
 	cd app/src && npm run web
