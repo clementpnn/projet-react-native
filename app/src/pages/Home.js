@@ -2,13 +2,14 @@ import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import Button from '../components/Button'
 import Input from '../components/Input'
+import Logo from '../components/svg/Logo'
 
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../assets/Logo.png')}
-      />
+      <View style={styles.logoContainer}>
+        <Logo/>
+      </View>
       <View style={styles.subContainer}>
         <Button
           text="Créer une partie"
@@ -30,7 +31,7 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40,
+    paddingTop: 60,
     paddingHorizontal: 20,
     display: 'flex',
     justifyContent: 'center',
@@ -39,10 +40,14 @@ const styles = StyleSheet.create({
     display: 'inline-flex',
     justifyContent: 'flex-start',
     gap: 40,
-    marginTop: 200,
+    marginTop: 140,
   },
   joinParty: {
     display: 'flex',
     gap: 20,
+  },
+  logoContainer: {
+    display: 'flex',
+    alignItems: 'center',
   }
 });
