@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import Button from '../components/Button'
 import Input from '../components/Input'
 
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>
-        Logo
-      </Text>
+      <Image
+        source={require('../assets/Logo.png')}
+      />
       <View style={styles.subContainer}>
         <Button
           text="Créer une partie"
