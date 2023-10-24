@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import io from 'socket.io-client';
+import Button from './components/Buttons'
 
 const socket = io('http://localhost:5000');
 
@@ -26,7 +27,8 @@ export default function App() {
 
   return (
     <View>
-      {board.map((row, rowIndex) => (
+      <Button text={'lala'} onPress={()=> console.log('prout')}/>
+      {/* {board.map((row, rowIndex) => (
         <View key={rowIndex} style={{ flexDirection: 'row' }}>
           {row.map((cell, colIndex) => (
             <TouchableOpacity
@@ -44,7 +46,7 @@ export default function App() {
             </TouchableOpacity>
           ))}
         </View>
-      ))}
+      ))} */}
     </View>
   );
 }
