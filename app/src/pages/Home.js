@@ -1,15 +1,20 @@
 import React from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import Button from '../components/Button'
+import Input from '../components/Input'
 
 export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Button
-        title="Créer une partie"
+        text="Créer une partie"
         onPress={() => navigation.navigate('CreateGame')}
       />
+      <Input
+        placeholder={"Entrez le code secret"}
+      />
       <Button
-        title="Rejoindre une partie"
+        text="Rejoindre la partie"
         onPress={() => navigation.navigate('JoinGame')}
       />
     </View>
