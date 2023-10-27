@@ -1,10 +1,7 @@
-
-import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-import Button from '../components/Button';
-import Input from '../components/Input';
-import Logo from '../components/svg/Logo';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, TextInput, Button, Text } from 'react-native';
 import { useWebSocket } from '../context/WebSocketContext';
+import Logo from '../components/svg/Logo';
 
 export default function HomeScreen({ navigation }) {
   const [roomCode, setRoomCode] = useState('');
@@ -18,7 +15,7 @@ export default function HomeScreen({ navigation }) {
         const message = JSON.parse(e.data);
         
         if (message.action === 'start_game') {
-          navigation.navigate('Game');
+          navigation.navigate('Game');x
         } else if (message.action === 'created') {
           setRoomCode(message.room_code);
           setIsHost(true);
@@ -31,6 +28,7 @@ export default function HomeScreen({ navigation }) {
     if (websocket) {
       websocket.send(JSON.stringify({ action: 'create' }));
       console.log('Create game message sent');
+
     }
   };
 
@@ -43,35 +41,35 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.logoContainer}>
-        <Logo/>
-      </View>
-      <View style={styles.subContainer}>
-        <Button
-          text="Créer une partie"
-          onPress={{createGame}}
-        />
-        <View style={styles.joinParty}>
-          <Input
-            placeholder={"Entrez le code secret"}
+      <Button title="Créer une partie" onPress={createGame} />
+      {isHost && (
+        <View style={styles.roomCodeContainer}>
+          <Text>Code de la salle :</Text>
+          <Text style={styles.roomCode}>{roomCode}</Text>
+        </View>
+      )}
+      {!isHost && (
+        <View style={styles.joinContainer}>
+          <TextInput 
+            style={styles.input} 
+            placeholder="Entrez le code de la salle" 
+            onChangeText={text => setRoomCode(text)} 
+            value={roomCode} 
           />
-          <Button
-            text="Rejoindre la partie"
-            onPress={joinGame}
-          />
+          <Button title="Rejoindre la partie" onPress={joinGame} />
         </View>
       </View>
 
+    </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 60,
-    paddingHorizontal: 20,
-    display: 'flex',
+    flex: 1,
     justifyContent: 'center',
+    paddingHorizontal: 16,
   },
   subContainer: {
     display: 'inline-flex',
@@ -79,12 +77,11 @@ const styles = StyleSheet.create({
     gap: 40,
     marginTop: 140,
   },
-  joinParty: {
-    display: 'flex',
-    gap: 20,
+  joinContainer: {
+    marginTop: 20,
   },
-  logoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-  }
+  input: {
+    borderBottomWidth: 1,
+    marginBottom: 20,
+  },
 });
