@@ -57,10 +57,7 @@ export default function HomeScreen({ navigation }) {
             value={roomCode} 
           />
           <Button title="Rejoindre la partie" onPress={joinGame} />
-        </View>
-      </View>
-
-    </View>
+        </View>)}
     </View>
   );
 }
