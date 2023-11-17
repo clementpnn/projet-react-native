@@ -1,19 +1,21 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './pages/Home';
-import { WebSocketProvider } from './context/WebSocketContext';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import Game from './pages/Game';
 
-const Stack = createStackNavigator();
+const App = () => {
+    return (
+        <SafeAreaView style={styles.container}>
+            <Game />
+        </SafeAreaView>
+    );
+};
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <WebSocketProvider>
-        <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-        </Stack.Navigator>
-      </WebSocketProvider>
-    </NavigationContainer>
-  );
-}
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
+
+export default App;
