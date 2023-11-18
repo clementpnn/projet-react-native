@@ -13,7 +13,6 @@ wss.on('connection', (ws) => {
     ws.send(JSON.stringify({ type: 'state', state: gameState, nextPlayer: currentPlayer }));
 
     ws.on('message', (message) => {
-        console.log('Received message: ' + message);
         const move = JSON.parse(message);
 
         if (gameState[move.index] || currentPlayer !== move.player) {
