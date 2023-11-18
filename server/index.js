@@ -15,6 +15,13 @@ wss.on('connection', (ws) => {
     ws.on('message', (message) => {
         const move = JSON.parse(message);
 
+        if (move.type === 'restart') {
+            gameState = Array(9).fill(null);
+            currentPlayer = 'X';
+            broadcast({ type: 'state', state: gameState, nextPlayer: currentPlayer });
+            return;
+        }
+
         if (gameState[move.index] || currentPlayer !== move.player) {
             return;
         }
@@ -23,9 +30,17 @@ wss.on('connection', (ws) => {
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
 
         const winner = calculateWinner(gameState);
+        const isDraw = !gameState.includes(null)
         if (winner) {
             broadcast({ type: 'winner', winner });
             gameState = Array(9).fill(null);
+            currentPlayer = 'X';
+            broadcast({ type: 'state', state: gameState, nextPlayer: currentPlayer });
+        } else if (isDraw) {
+            broadcast({ type: 'draw' })
+            gameState = Array(9).fill(null)
+            currentPlayer = 'X';
+            broadcast({ type: 'state', state: gameState, nextPlayer: currentPlayer });
         } else {
             broadcast({ type: 'state', state: gameState, nextPlayer: currentPlayer });
         }

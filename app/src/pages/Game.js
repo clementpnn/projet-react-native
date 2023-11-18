@@ -41,7 +41,8 @@ const Game = () => {
             setXIsNext(message.nextPlayer === 'X');
         } else if (message.type === 'winner') {
             alert(`Le gagnant est ${message.winner}`);
-            setSquares(Array(9).fill(null));
+        } else if (message.type === 'draw') {
+            alert('C\'est un match nul !')
         }
     };
     
@@ -52,6 +53,13 @@ const Game = () => {
         }
         ws.send(JSON.stringify({ index: i, player: xIsNext ? 'X' : 'O' }));
     };
+
+    const restartGame = () => {
+        setSquares(Array(9).fill(null))
+        if (ws) {
+            ws.send(JSON.stringify({ type: 'restart' }))
+        }
+    }
 
     const calculateWinner = (squares) => {
       const lines = [
@@ -82,7 +90,7 @@ const Game = () => {
                 <Text style={styles.statusText}>Next player: {xIsNext ? 'X' : 'O'}</Text>
                 <Button 
                     title="RESTART GAME" 
-                    onPress={() => setSquares(Array(9).fill(null))}
+                    onPress={restartGame}
                     color="#1E90FF"
                 />
             </View>
