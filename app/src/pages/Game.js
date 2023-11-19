@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { View, Button, Text, StyleSheet, Dimensions } from 'react-native';
 import Board from '../components/Board';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Game = () => {
   const [squares, setSquares] = useState(Array(9).fill(null));
     const [xIsNext, setXIsNext] = useState(true);
     const [ws, setWs] = useState(null);
+    const [username, setUsername] = useState('');
 
     useEffect(() => {
+        const getUsername = async () => {
+            const storedUsername = await AsyncStorage.getItem('userName');
+            if (storedUsername) {
+              setUsername(storedUsername);
+            }
+        };
+      
+        getUsername();
+
         const webSocket = new WebSocket('ws://localhost:3000');
 
         webSocket.onopen = () => {
@@ -83,6 +94,7 @@ const Game = () => {
 
     return (
         <View style={styles.gameContainer}>
+            <Text style={styles.usernameText}>{username}</Text>
             <View style={styles.boardContainer}>
                 <Board squares={squares} onPress={handleClick} />
             </View>
@@ -103,6 +115,11 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    usernameText: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginTop: 10,
     },
     boardContainer: {
         marginBottom: 20,
