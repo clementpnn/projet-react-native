@@ -95,15 +95,19 @@ const Game = () => {
     return (
         <View style={styles.gameContainer}>
             <Text style={styles.usernameText}>{username}</Text>
+            <View style={styles.statusContainer}>
+                <Text style={xIsNext? styles.crossText: styles.defaultText}>X</Text>
+                <Text style={xIsNext? styles.defaultText:styles.circleText}>O</Text>
+            </View>
+
             <View style={styles.boardContainer}>
                 <Board squares={squares} onPress={handleClick} />
             </View>
-            <View style={styles.statusContainer}>
-                <Text style={styles.statusText}>Next player: {xIsNext ? 'X' : 'O'}</Text>
+            <View style={styles.restartContainer}>
                 <Button 
-                    title="RESTART GAME" 
+                    title="Restart" 
                     onPress={restartGame}
-                    color="#1E90FF"
+                    color="#6666FF"
                 />
             </View>
         </View>
@@ -112,33 +116,58 @@ const Game = () => {
 
 const styles = StyleSheet.create({
     gameContainer: {
+        gap: 20,
         flex: 1,
-        alignItems: 'center',
+        padding: 20,
+        alignContent: 'center',
         justifyContent: 'center',
     },
     usernameText: {
+        paddingHorizontal: 20,
         fontSize: 18,
+        textTransform: "uppercase",
         fontWeight: 'bold',
-        marginTop: 10,
     },
     boardContainer: {
-        marginBottom: 20,
-    },
-    statusContainer: {
-        alignItems: 'center',
-        margin: 20,
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
     },
     statusText: {
         fontSize: 24,
         fontWeight: 'bold',
-        margin: 10,
+    },
+    crossText: {
+        fontSize: 40,
+        color: '#6666FF',
+        fontWeight: "bold"
+    },
+    circleText: {
+        fontSize: 40,
+        color: '#E85454',
+        fontWeight: "bold"
+    },
+    defaultText: {
+        fontSize: 40,
+        color: '#A3A3A3',
+        fontWeight: "bold"
+    },
+    statusContainer: {
+        flexDirection: "row",
+        width: "100%",
+        padding: 20,
+        justifyContent: "space-between",
+        alignContent: "center",
+    },
+    restartContainer: {
+        padding: 16,
+        justifyContent: "center",
+        alignContent: "center",
     },
     game: {
         alignItems: 'center',
-        marginTop: 20,
     },
     status: {
-        margin: 10,
         fontSize: 20,
     },
 });

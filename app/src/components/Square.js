@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 const Square = ({ value, onPress }) => (
     <TouchableOpacity style={styles.square} onPress={onPress}>
-        <Text style={styles.squareText}>{value}</Text>
+        <Text style={value == "X" ? styles.crossText: styles.circleText }>{value}</Text>
     </TouchableOpacity>
 );
 
@@ -11,15 +11,21 @@ const styles = StyleSheet.create({
     square: {
         width: 100,
         height: 100,
-        backgroundColor: '#ddd',
+        backgroundColor: '#F1F1F1',
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: '#A3A3A3',
     },
-    squareText: {
-        fontSize: 30,
-        color: 'blue',
+    crossText: {
+        fontSize: 40,
+        color: '#6666FF',
+        fontWeight: "bold"
+    },
+    circleText: {
+        fontSize: 40,
+        color: '#E85454',
+        fontWeight: "bold"
     },
 });
 
